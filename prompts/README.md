@@ -28,10 +28,10 @@
     <th>Spaceship</th>
     <th>Bash PS1</th>
   </tr>
-  <tr><td><code>color0</code></td><td>Dark background</td><td>session/git/cmd/status/battery bg</td><td>session/git/executiontime/status/battery bg</td><td>—</td><td>—</td></tr>
-  <tr><td><code>color1</code></td><td>Red (error, accent)</td><td>time bg, character error, status fg</td><td>time bg, status fg, battery low</td><td>char failure, battery discharging, exit code</td><td>error prompt char</td></tr>
+  <tr><td><code>color0</code></td><td>Dark background</td><td>session/git/cmd/status bg, battery low fg</td><td>session/git/executiontime/status/battery bg</td><td>—</td><td>—</td></tr>
+  <tr><td><code>color1</code></td><td>Red (error, accent)</td><td>time/battery bg, character error, status fg</td><td>time bg, status fg, battery low</td><td>char failure, battery discharging, exit code</td><td>error prompt char</td></tr>
   <tr><td><code>color2</code></td><td>Green (success)</td><td>character success</td><td>text (prompt char) success</td><td>char success</td><td>success prompt char</td></tr>
-  <tr><td><code>color3</code></td><td>Yellow (user, battery)</td><td>username fg, battery full</td><td>battery high fg</td><td>user colour, battery colour</td><td>user name</td></tr>
+  <tr><td><code>color3</code></td><td>Yellow (user, battery)</td><td>username fg, battery fg</td><td>battery high fg</td><td>user colour, battery colour</td><td>user name</td></tr>
   <tr><td><code>color4</code></td><td>Orange</td><td>— (reserved)</td><td>—</td><td>—</td><td>—</td></tr>
   <tr><td><code>color5</code></td><td>Purple</td><td>os bg</td><td>os bg</td><td>—</td><td>—</td></tr>
   <tr><td><code>color6</code></td><td>Cyan (directory, langs)</td><td>directory bg/fg, language fg, cmd_duration fg</td><td>path bg/fg, language fg</td><td>dir colour, exec_time colour</td><td>directory</td></tr>

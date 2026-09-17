@@ -1,14 +1,14 @@
-format = """
-[](fg:#1c1c1d)\
+format = """[](fg:#1c1c1d)\
 $username\
 $hostname\
-[](bg:#948ae3 fg:#1c1c1d)\
+[](bg:#948ae3 fg:#1c1c1d)\
 $os\
-[](bg:#fc618d fg:#948ae3)\
+[](bg:#fc618d fg:#948ae3)\
 $time\
-[](fg:#fc618d bg:#5ad4e6)\
+$battery\
+[](fg:#fc618d bg:#5ad4e6)\
 $directory\
-[](fg:#5ad4e6 bg:#1c1c1d)\
+[](fg:#5ad4e6 bg:#1c1c1d)\
 $nodejs\
 $rust\
 $golang\
@@ -22,15 +22,14 @@ $python\
 $ruby\
 $dart\
 $c\
-[](fg:#1c1c1d bg:#1c1c1d)\
+[](fg:#1c1c1d)\
 $character"""
 
 right_format = """
 $git_branch\
 $git_status\
 $cmd_duration\
-$status\
-$battery"""
+$status"""
 
 [username]
 style_user = "fg:#fce566 bg:#1c1c1d"
@@ -61,35 +60,74 @@ disabled = false
 style = "bg:#948ae3 fg:#1c1c1d"
 
 [os.symbols]
-Windows = " 󰍲 "
-Ubuntu = " 󰕈 "
-SUSE = "  "
-Raspbian = " 󰐿 "
-Mint = " 󰣭 "
-Macos = " 󰀵 "
-Manjaro = "  "
-Linux = " 󰌽 "
-Gentoo = " 󰣨 "
-Fedora = " 󰣛 "
+AIX = "  "
+ALTLinux = "  "
+AOSC = "  "
+AlmaLinux = "  "
+Alpaquita = "  "
 Alpine = "  "
 Amazon = "  "
 Android = "  "
 Arch = " 󰣇 "
 Artix = " 󰣇 "
+Bluefin = "  "
+CachyOS = "  "
 CentOS = "  "
 Debian = " 󰣚 "
-Redhat = " 󱄛 "
-RedHatEnterprise = " 󱄛 "
+DragonFly = "  "
+Elementary = "  "
+Emscripten = "  "
+EndeavourOS = "  "
+Fedora = " 󰣛 "
+FreeBSD = "  "
+Garuda = "  "
+Gentoo = " 󰣨 "
+HardenedBSD = " 󰞌 "
+Illumos = "  "
+InstantOS = "  "
+Ios = " 󰀷 "
+Kali = "  "
+Linux = " 󰌽 "
+Mabox = "  "
+Macos = " 󰀵 "
+Manjaro = "  "
+Mariner = "  "
+MidnightBSD = "  "
+Mint = " 󰣭 "
+NetBSD = "  "
+NixOS = "  "
+Nobara = "  "
+OpenBSD = "  "
+OpenCloudOS = "  "
+OracleLinux = " 󰺡 "
+PikaOS = "  "
 Pop = "  "
+Raspbian = " 󰐿 "
+RedHatEnterprise = " 󱄛 "
+Redhat = " 󱄛 "
+Redox = " 󰀘 "
+RockyLinux = "  "
+SUSE = "  "
+Solus = "  "
+Ubuntu = " 󰕈 "
+Ultramarine = "  "
+Unknown = "  "
+Uos = "  "
+Void = "  "
+Windows = " 󰍲 "
+Zorin = "  "
+openEuler = "  "
+openSUSE = "  "
+
 
 [git_branch]
 symbol = ""
-style = "bg:#1c1c1d"
-format = "[[ $symbol $branch ](fg:#f7f1ff bg:#1c1c1d)]($style)"
+style = "fg:#f7f1ff"
+format = "[ $symbol $branch ]($style)"
 
 [git_status]
-style = "bg:#1c1c1d"
-format = "[[($all_status$ahead_behind )](fg:#f7f1ff bg:#1c1c1d)]($style)"
+style = "fg:#f7f1ff"
+format = "[($all_status$ahead_behind )]($style)"
 
 [git_metrics]
 disabled = true
@@ -167,13 +205,13 @@ format = "[[  $time ](fg:#1c1c1d bg:#fc618d)]($style)"
 
 [cmd_duration]
 min_time = 800
-style = "bg:#1c1c1d"
-format = "[[  $duration ](fg:#5ad4e6 bg:#1c1c1d)]($style)"
+style = "fg:#5ad4e6"
+format = "[  $duration ]($style)"
 
 [status]
 disabled = false
-style = "bg:#1c1c1d"
-format = "[[ $status ](fg:#fc618d bg:#1c1c1d)]($style)"
+style = "fg:#fc618d"
+format = "[ $status ]($style)"
 
 [memory_usage]
 disabled = true
@@ -183,15 +221,15 @@ disabled = false
 full_symbol = ""
 charging_symbol = ""
 discharging_symbol = ""
-format = "[[ $symbol $percentage ](fg:#fce566 bg:#1c1c1d)]($style)"
+format = "[ $symbol $percentage ]($style)"
 
 [[battery.display]]
 threshold = 20
-style = "fg:#fc618d bg:#1c1c1d"
+style = "bold fg:#1c1c1d bg:#fc618d"
 
 [[battery.display]]
 threshold = 100
-style = "fg:#fce566 bg:#1c1c1d"
+style = "fg:#fce566 bg:#fc618d"
 
 [character]
 success_symbol = "[❯](bold #7bd88f)"

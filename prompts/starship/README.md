@@ -35,7 +35,7 @@ ssberlin
 ssbogota
 ssbase</code></pre>
 
-<p><strong>tokio</strong> splits information across left and right prompts.</p>
+<p><strong>tokio</strong> splits information across left and right prompts (native in zsh; bash requires ble.sh v0.4+).</p>
 
 <p>The function updates the line below in your shell config to point at the selected theme:</p>
 

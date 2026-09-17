@@ -5,14 +5,14 @@
   "mapping": {
     "color0": {
       "ansi_name": "Black (dark background)",
-      "prompt_usage": "Username/hostname background, git/cmd/status/battery background, leading diamond",
-      "starship_modules": ["username bg", "hostname bg", "git_branch bg", "git_status bg", "cmd_duration bg", "status bg", "battery bg"],
+      "prompt_usage": "Username/hostname background, git/cmd/status background, leading/ending diamond, battery low text",
+      "starship_modules": ["username bg", "hostname bg", "git_branch bg", "git_status bg", "cmd_duration bg", "status bg", "battery low fg"],
       "ohmyposh_segments": ["session bg", "git bg", "executiontime bg", "status bg", "battery bg"]
     },
     "color1": {
       "ansi_name": "Red",
-      "prompt_usage": "Time section background, error/root user, status error, battery low threshold",
-      "starship_modules": ["time bg", "style_root", "status fg", "character error", "battery display <20"],
+      "prompt_usage": "Time + battery section background, error/root user, status error",
+      "starship_modules": ["time bg", "battery bg", "style_root", "status fg", "character error", "battery display <20 bg"],
       "ohmyposh_segments": ["time bg", "status error background", "battery low bg"]
     },
     "color2": {
@@ -23,8 +23,8 @@
     },
     "color3": {
       "ansi_name": "Yellow",
-      "prompt_usage": "Username text (normal user), battery full/charging",
-      "starship_modules": ["username style_user fg", "battery format fg", "battery display >20 fg"],
+      "prompt_usage": "Username text (normal user), battery text",
+      "starship_modules": ["username style_user fg", "battery normal fg", "battery display >20 fg"],
       "ohmyposh_segments": ["session user fg", "battery high fg"]
     },
     "color4": {

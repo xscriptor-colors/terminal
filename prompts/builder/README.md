@@ -13,14 +13,15 @@ Templates use a variant system:
 
 | File pattern | Variant | Applied to |
 |---|---|---|
-| `starship.toml.template` | `default` | `x`, `tokio` |
+| `starship.toml.template` | `default` | `x` |
+| `starship.tokio.toml.template` | `tokio` | `tokio` |
 | `starship.combo.toml.template` | `combo` | all other themes |
 | `ohmyposh.json.template` | `default` | `x`, `tokio` |
 | `ohmyposh.combo.json.template` | `combo` | all other themes |
 | `spaceship.zsh.template` | `default` | all themes |
 | `bash.ps1.sh.template` | `ps1` | all themes |
 
-The `default` variant renders full powerline blocks. The `combo` variant renders session + directory as powerline blocks and everything else as plain text with `>` separators. Engines with a single variant use it for all themes.
+The `default` variant renders full powerline blocks. The `tokio` variant uses the same blocks for the left prompt and moves git, duration, status and battery to a right prompt via `right_format`. The `combo` variant renders session + directory as powerline blocks and everything else as plain text with `>` separators attached to each module so they never dangle. Engines with a single variant use it for all themes.
 
 ## How to add or change a theme
 
@@ -39,7 +40,7 @@ The `default` variant renders full powerline blocks. The `combo` variant renders
    cp -r prompts/builder/test/starship/* prompts/starship/themes/
    cp -r prompts/builder/test/ohmyposh/* prompts/ohmyposh/themes/
    ```
-7. For `tokio.toml` (right-prompt variant), apply `right_format` manually after copying.
+7. `tokio.toml` (right-prompt variant) is generated from `starship.tokio.toml.template`.
 
 ## Template variables
 
@@ -60,10 +61,10 @@ All prompt themes follow this mapping from ANSI colour numbers to prompt element
 
 | ANSI | Prompt usage |
 |---|---|
-| color0 | session / git / cmd / status / battery background |
-| color1 | time background, error character, status error |
+| color0 | session / git / cmd / status background, battery low foreground |
+| color1 | time + battery background, error character, status error |
 | color2 | character success |
-| color3 | username text (user mode), battery full |
+| color3 | username text (user mode), battery text |
 | color5 | OS section background |
 | color6 | directory background/foreground, language version text |
 | color7 | hostname text, git branch/status text |
