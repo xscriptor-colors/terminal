@@ -1,14 +1,15 @@
 format = """
-[](fg:{{ color0 }})\
+[](fg:{{ color0 }})\
 $username\
 $hostname\
-[](bg:{{ color5 }} fg:{{ color0 }})\
+[](bg:{{ color5 }} fg:{{ color0 }})\
 $os\
-[](bg:{{ color1 }} fg:{{ color5 }})\
+[](bg:{{ color1 }} fg:{{ color5 }})\
 $time\
-[](fg:{{ color1 }} bg:{{ color6 }})\
+$battery\
+[](fg:{{ color1 }} bg:{{ color6 }})\
 $directory\
-[](fg:{{ color6 }} bg:{{ color8 }})\
+[](fg:{{ color6 }} bg:{{ color8 }})\
 $nodejs\
 $rust\
 $golang\
@@ -22,14 +23,12 @@ $python\
 $ruby\
 $dart\
 $c\
-[](fg:{{ color8 }} bg:{{ color0 }})\
-[](fg:{{ color6 }} bg:{{ color0 }})\
+[](fg:{{ color8 }} bg:{{ color0 }})\
 $git_branch\
 $git_status\
-[](fg:{{ color0 }})\
 $cmd_duration\
 $status\
-$battery\
+[](fg:{{ color0 }})\
 \n$character"""
 
 [username]
@@ -61,26 +60,65 @@ disabled = false
 style = "bg:{{ color5 }} fg:{{ color0 }}"
 
 [os.symbols]
-Windows = " 󰍲 "
-Ubuntu = " 󰕈 "
-SUSE = "  "
-Raspbian = " 󰐿 "
-Mint = " 󰣭 "
-Macos = " 󰀵 "
-Manjaro = "  "
-Linux = " 󰌽 "
-Gentoo = " 󰣨 "
-Fedora = " 󰣛 "
+AIX = "  "
+ALTLinux = "  "
+AOSC = "  "
+AlmaLinux = "  "
+Alpaquita = "  "
 Alpine = "  "
 Amazon = "  "
 Android = "  "
 Arch = " 󰣇 "
 Artix = " 󰣇 "
+Bluefin = "  "
+CachyOS = "  "
 CentOS = "  "
 Debian = " 󰣚 "
-Redhat = " 󱄛 "
-RedHatEnterprise = " 󱄛 "
+DragonFly = "  "
+Elementary = "  "
+Emscripten = "  "
+EndeavourOS = "  "
+Fedora = " 󰣛 "
+FreeBSD = "  "
+Garuda = "  "
+Gentoo = " 󰣨 "
+HardenedBSD = " 󰞌 "
+Illumos = "  "
+InstantOS = "  "
+Ios = " 󰀷 "
+Kali = "  "
+Linux = " 󰌽 "
+Mabox = "  "
+Macos = " 󰀵 "
+Manjaro = "  "
+Mariner = "  "
+MidnightBSD = "  "
+Mint = " 󰣭 "
+NetBSD = "  "
+NixOS = "  "
+Nobara = "  "
+OpenBSD = "  "
+OpenCloudOS = "  "
+OracleLinux = " 󰺡 "
+PikaOS = "  "
 Pop = "  "
+Raspbian = " 󰐿 "
+RedHatEnterprise = " 󱄛 "
+Redhat = " 󱄛 "
+Redox = " 󰀘 "
+RockyLinux = "  "
+SUSE = "  "
+Solus = "  "
+Ubuntu = " 󰕈 "
+Ultramarine = "  "
+Unknown = "  "
+Uos = "  "
+Void = "  "
+Windows = " 󰍲 "
+Zorin = "  "
+openEuler = "  "
+openSUSE = "  "
+
 
 [git_branch]
 symbol = ""
@@ -183,15 +221,15 @@ disabled = false
 full_symbol = ""
 charging_symbol = ""
 discharging_symbol = ""
-format = "[[ $symbol $percentage ](fg:{{ color3 }} bg:{{ color0 }})]($style)"
+format = "[ $symbol $percentage ]($style)"
 
 [[battery.display]]
 threshold = 20
-style = "fg:{{ color1 }} bg:{{ color0 }}"
+style = "bold fg:{{ color0 }} bg:{{ color1 }}"
 
 [[battery.display]]
 threshold = 100
-style = "fg:{{ color3 }} bg:{{ color0 }}"
+style = "fg:{{ color3 }} bg:{{ color1 }}"
 
 [character]
 success_symbol = "[❯](bold {{ color2 }})"

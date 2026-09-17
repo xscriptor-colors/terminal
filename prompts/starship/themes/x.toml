@@ -1,14 +1,15 @@
 format = """
-[](fg:#0a0a0a)\
+[](fg:#0a0a0a)\
 $username\
 $hostname\
-[](bg:#948ae3 fg:#0a0a0a)\
+[](bg:#948ae3 fg:#0a0a0a)\
 $os\
-[](bg:#fc618d fg:#948ae3)\
+[](bg:#fc618d fg:#948ae3)\
 $time\
-[](fg:#fc618d bg:#5ad4e6)\
+$battery\
+[](fg:#fc618d bg:#5ad4e6)\
 $directory\
-[](fg:#5ad4e6 bg:#0f0f0f)\
+[](fg:#5ad4e6 bg:#0f0f0f)\
 $nodejs\
 $rust\
 $golang\
@@ -22,14 +23,12 @@ $python\
 $ruby\
 $dart\
 $c\
-[](fg:#0f0f0f bg:#0a0a0a)\
-[](fg:#5ad4e6 bg:#0a0a0a)\
+[](fg:#0f0f0f bg:#0a0a0a)\
 $git_branch\
 $git_status\
-[](fg:#0a0a0a)\
 $cmd_duration\
 $status\
-$battery\
+[](fg:#0a0a0a)\
 \n$character"""
 
 [username]
@@ -61,26 +60,65 @@ disabled = false
 style = "bg:#948ae3 fg:#0a0a0a"
 
 [os.symbols]
-Windows = " 󰍲 "
-Ubuntu = " 󰕈 "
-SUSE = "  "
-Raspbian = " 󰐿 "
-Mint = " 󰣭 "
-Macos = " 󰀵 "
-Manjaro = "  "
-Linux = " 󰌽 "
-Gentoo = " 󰣨 "
-Fedora = " 󰣛 "
+AIX = "  "
+ALTLinux = "  "
+AOSC = "  "
+AlmaLinux = "  "
+Alpaquita = "  "
 Alpine = "  "
 Amazon = "  "
 Android = "  "
 Arch = " 󰣇 "
 Artix = " 󰣇 "
+Bluefin = "  "
+CachyOS = "  "
 CentOS = "  "
 Debian = " 󰣚 "
-Redhat = " 󱄛 "
-RedHatEnterprise = " 󱄛 "
+DragonFly = "  "
+Elementary = "  "
+Emscripten = "  "
+EndeavourOS = "  "
+Fedora = " 󰣛 "
+FreeBSD = "  "
+Garuda = "  "
+Gentoo = " 󰣨 "
+HardenedBSD = " 󰞌 "
+Illumos = "  "
+InstantOS = "  "
+Ios = " 󰀷 "
+Kali = "  "
+Linux = " 󰌽 "
+Mabox = "  "
+Macos = " 󰀵 "
+Manjaro = "  "
+Mariner = "  "
+MidnightBSD = "  "
+Mint = " 󰣭 "
+NetBSD = "  "
+NixOS = "  "
+Nobara = "  "
+OpenBSD = "  "
+OpenCloudOS = "  "
+OracleLinux = " 󰺡 "
+PikaOS = "  "
 Pop = "  "
+Raspbian = " 󰐿 "
+RedHatEnterprise = " 󱄛 "
+Redhat = " 󱄛 "
+Redox = " 󰀘 "
+RockyLinux = "  "
+SUSE = "  "
+Solus = "  "
+Ubuntu = " 󰕈 "
+Ultramarine = "  "
+Unknown = "  "
+Uos = "  "
+Void = "  "
+Windows = " 󰍲 "
+Zorin = "  "
+openEuler = "  "
+openSUSE = "  "
+
 
 [git_branch]
 symbol = ""
@@ -183,15 +221,15 @@ disabled = false
 full_symbol = ""
 charging_symbol = ""
 discharging_symbol = ""
-format = "[[ $symbol $percentage ](fg:#fce566 bg:#0a0a0a)]($style)"
+format = "[ $symbol $percentage ]($style)"
 
 [[battery.display]]
 threshold = 20
-style = "fg:#fc618d bg:#0a0a0a"
+style = "bold fg:#0a0a0a bg:#fc618d"
 
 [[battery.display]]
 threshold = 100
-style = "fg:#fce566 bg:#0a0a0a"
+style = "fg:#fce566 bg:#fc618d"
 
 [character]
 success_symbol = "[❯](bold #7bd88f)"

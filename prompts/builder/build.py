@@ -26,11 +26,11 @@ TEST_DIR = os.path.join(BUILDER_DIR, 'test')
 STARSHIP_TEST_DIR = os.path.join(TEST_DIR, 'starship')
 OHMYPOSH_TEST_DIR = os.path.join(TEST_DIR, 'ohmyposh')
 
-# Variant assignment: which variant template to use for which theme
-# The "default" variant (no .variant. in filename) is always used for x.
-# The "combo" variant is used for all others.
-VARIANT_THEMES = {
-    'combo': None,  # None means all non-x themes
+# Variant assignment: which variant template to use for which theme.
+# Themes not listed here use the "combo" variant (or "default" if no combo template exists).
+THEME_VARIANTS = {
+    'x': 'default',
+    'tokio': 'tokio',
 }
 
 
@@ -134,16 +134,11 @@ def build_themes():
 
         for theme_name, base_colors in themes.items():
             # Determine which variant to use
-            if theme_name == 'x' or theme_name == 'tokio':
-                variant = 'default'
-            elif 'default' in variants and 'combo' not in variants:
-                variant = 'default'
-            elif 'combo' in variants:
-                variant = 'combo'
-            else:
-                variant = 'default'
+            variant = THEME_VARIANTS.get(theme_name)
+            if variant is None:
+                variant = 'combo' if 'combo' in variants else 'default'
 
-            template_file = variants.get(variant) or variants.get('default') or list(variants.values())[0]
+            template_file = variants.get(variant) or variants.get('default') or next(iter(variants.values()))
 
             with open(os.path.join(TEMPLATES_DIR, template_file), 'r', encoding='utf-8') as f:
                 template_content = f.read()
