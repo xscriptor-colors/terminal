@@ -66,7 +66,7 @@ foreach ($rc in $rcTargets) {
     $content = Get-Content $rc -Raw -ErrorAction SilentlyContinue
     if ($content) {
       $content = [regex]::Replace($content, "(?ms)function\s+pwsx\s*\(.*?\)\s*\{.*?\}", "")
-      $aliases = @('pwsxx','pwsxmadrid','pwsxlahabana','pwsxseul','pwsxmiami','pwsxparis','pwsxtokio','pwsxoslo','pwsxhelsinki','pwsxberlin','pwsxlondon','pwsxpraha','pwsxbogota')
+      $aliases = @('pwsxx','pwsxmadrid','pwsxlahabana','pwsxmiami','pwsxparis','pwsxtokio','pwsxoslo','pwsxhelsinki','pwsxberlin','pwsxlondon','pwsxpraha','pwsxbogota')
       foreach ($a in $aliases) {
         $content = [regex]::Replace($content, "(?ms)function\s+$a\s*\{.*?\}", "")
       }
