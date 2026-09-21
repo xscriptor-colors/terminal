@@ -4,7 +4,6 @@ set -e
 UUID_X="6e8b5e50-1c2a-4a22-9a10-000000000001"
 UUID_MADRID="6e8b5e50-1c2a-4a22-9a10-000000000002"
 UUID_LAHABANA="6e8b5e50-1c2a-4a22-9a10-000000000003"
-UUID_SEUL="6e8b5e50-1c2a-4a22-9a10-000000000004"
 UUID_MIAMI="6e8b5e50-1c2a-4a22-9a10-000000000005"
 UUID_PARIS="6e8b5e50-1c2a-4a22-9a10-000000000006"
 UUID_TOKIO="6e8b5e50-1c2a-4a22-9a10-000000000007"
@@ -76,7 +75,7 @@ if command -v gsettings >/dev/null 2>&1; then
   NEW_LIST=""
   echo "$STRIPPED" | tr ',' '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | while read -r uuid; do
     case "$uuid" in
-      "$UUID_X"|"$UUID_MADRID"|"$UUID_LAHABANA"|"$UUID_SEUL"|"$UUID_MIAMI"|"$UUID_PARIS"|"$UUID_TOKIO"|"$UUID_OSLO"|"$UUID_HELSINKI"|"$UUID_BERLIN"|"$UUID_LONDON"|"$UUID_PRAHA"|"$UUID_BOGOTA")
+      "$UUID_X"|"$UUID_MADRID"|"$UUID_LAHABANA"|"$UUID_MIAMI"|"$UUID_PARIS"|"$UUID_TOKIO"|"$UUID_OSLO"|"$UUID_HELSINKI"|"$UUID_BERLIN"|"$UUID_LONDON"|"$UUID_PRAHA"|"$UUID_BOGOTA")
         ;;
       *)
         if [ -z "$FIRST" ]; then
@@ -97,7 +96,7 @@ if command -v gsettings >/dev/null 2>&1; then
   fi
   DEFAULT="$(gsettings get org.gnome.Terminal.ProfilesList default | sed "s/'//g")"
   case "$DEFAULT" in
-    "$UUID_X"|"$UUID_MADRID"|"$UUID_LAHABANA"|"$UUID_SEUL"|"$UUID_MIAMI"|"$UUID_PARIS"|"$UUID_TOKIO"|"$UUID_OSLO"|"$UUID_HELSINKI"|"$UUID_BERLIN"|"$UUID_LONDON"|"$UUID_PRAHA"|"$UUID_BOGOTA")
+    "$UUID_X"|"$UUID_MADRID"|"$UUID_LAHABANA"|"$UUID_MIAMI"|"$UUID_PARIS"|"$UUID_TOKIO"|"$UUID_OSLO"|"$UUID_HELSINKI"|"$UUID_BERLIN"|"$UUID_LONDON"|"$UUID_PRAHA"|"$UUID_BOGOTA")
       if [ -n "$FIRST" ]; then
         gsettings set org.gnome.Terminal.ProfilesList default "'$FIRST'"
       fi
@@ -109,7 +108,7 @@ fi
 
 if command -v dconf >/dev/null 2>&1; then
   for UUID in \
-    "$UUID_X" "$UUID_MADRID" "$UUID_LAHABANA" "$UUID_SEUL" "$UUID_MIAMI" \
+    "$UUID_X" "$UUID_MADRID" "$UUID_LAHABANA" "$UUID_MIAMI" \
     "$UUID_PARIS" "$UUID_TOKIO" "$UUID_OSLO" "$UUID_HELSINKI" "$UUID_BERLIN" "$UUID_LONDON" \
     "$UUID_PRAHA" "$UUID_BOGOTA"
   do
