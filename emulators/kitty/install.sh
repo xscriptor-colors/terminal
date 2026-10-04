@@ -2,8 +2,10 @@
 set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SRC_THEMES_DIR="$SCRIPT_DIR/themes"
+SRC_SHADERS_DIR="$SCRIPT_DIR/shaders"
 TARGET_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/kitty"
 TARGET_THEMES_DIR="$TARGET_CONFIG_DIR/themes"
+TARGET_SHADERS_DIR="$TARGET_CONFIG_DIR/shaders"
 MAIN="$TARGET_CONFIG_DIR/kitty.conf"
 detect_pm() {
   for pm in apt-get dnf pacman zypper yum apk brew; do
@@ -104,6 +106,30 @@ ensure_unzip() {
       ;;
   esac
 }
+ensure_slangc() {
+  if command -v slangc >/dev/null 2>&1; then
+    return 0
+  fi
+  PM="$(detect_pm)" || {
+    echo "Warning: slangc not found and no supported package manager detected."
+    echo "Custom kitty shaders stay disabled until shader-slang is installed."
+    return 0
+  }
+  if [ "$PM" = "pacman" ]; then
+    SUDO="$(sudo_cmd)"
+    echo "Installing shader-slang (required by the custom kitty shaders)..."
+    $SUDO pacman -S --needed --noconfirm shader-slang || true
+    if command -v slangc >/dev/null 2>&1; then
+      echo "shader-slang installed: $(command -v slangc)"
+      return 0
+    fi
+  fi
+  echo "Warning: slangc was not found. Custom kitty shaders stay disabled."
+  echo "  Arch:  sudo pacman -S shader-slang"
+  echo "  Other: install shader-slang from your package manager or"
+  echo "         https://github.com/shader-slang/slang/releases"
+  echo "  If slangc is not in PATH, launch kitty with SLANGC=/path/to/slangc."
+}
 ensure_unzip || true
 MISSING=""
 command -v kitty >/dev/null 2>&1 || MISSING="$MISSING kitty"
@@ -192,8 +218,10 @@ else
 fi
 RAW_BASE="https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/kitty"
 THEMES_FILES="x.conf madrid.conf lahabana.conf miami.conf paris.conf tokio.conf oslo.conf helsinki.conf berlin.conf london.conf praha.conf bogota.conf"
+SHADERS_FILES="x-glow.slang x-trail.pipeline"
 mkdir -p "$TARGET_CONFIG_DIR"
 mkdir -p "$TARGET_THEMES_DIR"
+mkdir -p "$TARGET_SHADERS_DIR"
 USE_REMOTE=0
 if [ ! -d "$SRC_THEMES_DIR" ] || [ -z "$(ls -1 "$SRC_THEMES_DIR"/*.conf 2>/dev/null)" ] || [ ! -f "$SCRIPT_DIR/config" ]; then
   USE_REMOTE=1
@@ -213,6 +241,24 @@ else
   COUNT_T="$(ls -1 "$TARGET_THEMES_DIR" 2>/dev/null | wc -l | tr -d ' ')"
   echo "Themes installed (remote): $COUNT_T in $TARGET_THEMES_DIR"
 fi
+if [ "$USE_REMOTE" -eq 0 ]; then
+  echo "Using local shaders in $SRC_SHADERS_DIR"
+  for f in "$SRC_SHADERS_DIR"/*.slang "$SRC_SHADERS_DIR"/*.pipeline; do
+    if [ -f "$f" ]; then
+      cp -f "$f" "$TARGET_SHADERS_DIR/$(basename "$f")"
+    fi
+  done
+  COUNT_S="$(ls -1 "$TARGET_SHADERS_DIR" 2>/dev/null | wc -l | tr -d ' ')"
+  echo "Shaders installed: $COUNT_S in $TARGET_SHADERS_DIR"
+else
+  echo "Downloading shaders from remote repository..."
+  for name in $SHADERS_FILES; do
+    fetch_file "$RAW_BASE/shaders/$name" "$TARGET_SHADERS_DIR/$name"
+  done
+  COUNT_S="$(ls -1 "$TARGET_SHADERS_DIR" 2>/dev/null | wc -l | tr -d ' ')"
+  echo "Shaders installed (remote): $COUNT_S in $TARGET_SHADERS_DIR"
+fi
+ensure_slangc
 if [ -f "$MAIN" ]; then
   TS="$(date +%s)"
   cp "$MAIN" "$MAIN.bak.$TS"

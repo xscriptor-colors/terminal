@@ -2,6 +2,15 @@
 
 All notable changes to Terminal Xscriptor will be documented in this file.
 
+## 2026-10-04
+
+### Added
+- Kitty custom neon trail shader (`x-glow.slang` + `x-trail.pipeline`): a brighter version of the stock cursor trail with afterglow and sparks while typing and jumping lines
+- Kitty installer now ships the shaders to `~/.config/kitty/shaders` and installs `shader-slang` automatically with pacman
+
+### Changed
+- Kitty config now enables `custom_shaders x-trail` and no longer remembers the previous window size/maximize state (`remember_window_size no`, `remember_window_position no`)
+
 ## 2026-08-23
 
 - Migrate all customizations to xscriptor-colors

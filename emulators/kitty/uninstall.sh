@@ -3,8 +3,10 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TARGET_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/kitty"
 TARGET_THEMES_DIR="$TARGET_CONFIG_DIR/themes"
+TARGET_SHADERS_DIR="$TARGET_CONFIG_DIR/shaders"
 MAIN="$TARGET_CONFIG_DIR/kitty.conf"
 THEMES_FILES="x.conf madrid.conf lahabana.conf miami.conf paris.conf tokio.conf oslo.conf helsinki.conf berlin.conf london.conf praha.conf bogota.conf"
+SHADERS_FILES="x-glow.slang x-trail.pipeline"
 detect_pm() {
   for pm in apt-get dnf pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
@@ -47,6 +49,16 @@ for name in $THEMES_FILES; do
   fi
 done
 echo "Removed $REMOVED theme files from $TARGET_THEMES_DIR"
+mkdir -p "$TARGET_SHADERS_DIR"
+REMOVED_S=0
+for name in $SHADERS_FILES; do
+  if [ -f "$TARGET_SHADERS_DIR/$name" ]; then
+    rm -f "$TARGET_SHADERS_DIR/$name"
+    REMOVED_S=$((REMOVED_S+1))
+  fi
+done
+rmdir "$TARGET_SHADERS_DIR" 2>/dev/null || true
+echo "Removed $REMOVED_S shader files from $TARGET_SHADERS_DIR"
 restore_config_file() {
   FILE="$1"
   [ -f "$FILE" ] || { echo "Config not found: $FILE"; return 0; }

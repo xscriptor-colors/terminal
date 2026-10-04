@@ -1,0 +1,31 @@
+# Xscriptor neon trail: a brighter, more intense version of the stock
+# cursor trail, with a neon afterglow and sparks.
+#
+# Requires kitty >= 0.49.0 and the shader-slang compiler (`slangc`).
+# Keep `cursor_trail 1` (or greater) enabled in kitty.conf.
+#
+# Every value below can be tuned; reload the config (Ctrl+Shift+F5) to see
+# the changes live.
+
+startgroup
+    animation_start cursor-trail-move
+    animation_stop cursor-trail-stop
+    animation_step 16
+    # cursor-trail-default draws the same morphing trail kitty uses by
+    # default; x-glow adds the neon core, halo, flash and sparks.
+    var float GLOW_STRENGTH 0.95
+    var float GLOW_DURATION 0.7
+    var float CORE_WIDTH 0.12
+    var float HALO_SCALE 1.1
+    var float HEAD_FLASH 0.95
+    var float SPARK_OPACITY 1.0
+    var int MAX_SPARKS 56
+    var float SPARK_DENSITY 3.5
+    var float SPARK_LIFETIME 0.7
+    var float SPARK_EMIT 0.09
+    var float SPARK_SIZE 0.11
+    var float SPARK_SPEED 26.0
+    var float SPARK_SPREAD 1.0
+    var float SPARK_DRAG 2.0
+    shaders cursor-trail-default x-glow
+endgroup
