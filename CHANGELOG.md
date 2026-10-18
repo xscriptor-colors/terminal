@@ -2,6 +2,12 @@
 
 All notable changes to Terminal Xscriptor will be documented in this file.
 
+## 2026-10-18
+
+### Changed
+- Kitty cursor trail replaced with a jagged lightning effect (`x-lightning.slang` + `x-trail.pipeline`): forks, localized afterglow and sparks, a compact pulse for typing, capped long jumps and lower flicker
+- Kitty installer and uninstaller now handle `x-lightning.slang` (the previous `x-glow.slang` is removed)
+
 ## 2026-10-04
 
 ### Added

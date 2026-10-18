@@ -218,7 +218,7 @@ else
 fi
 RAW_BASE="https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/kitty"
 THEMES_FILES="x.conf madrid.conf lahabana.conf miami.conf paris.conf tokio.conf oslo.conf helsinki.conf berlin.conf london.conf praha.conf bogota.conf"
-SHADERS_FILES="x-glow.slang x-trail.pipeline"
+SHADERS_FILES="x-lightning.slang x-trail.pipeline"
 mkdir -p "$TARGET_CONFIG_DIR"
 mkdir -p "$TARGET_THEMES_DIR"
 mkdir -p "$TARGET_SHADERS_DIR"
