@@ -17,8 +17,8 @@
   - `praha.conf`
   - `bogota.conf`
 - `shaders/`: Custom cursor trail shader and its pipeline:
-  - `x-glow.slang`: neon afterglow drawn while typing and jumping between lines.
-  - `x-trail.pipeline`: composes the stock trail, the afterglow and sparks.
+  - `x-lightning.slang`: jagged electric bolt with forks, localized afterglow and sparks, following the cursor while typing and jumping between lines.
+  - `x-trail.pipeline`: composes the lightning trail and exposes its tuning (duration, width, intensity, sparks and colors).
 
 ## Requirements
 - Kitty installed.
@@ -64,7 +64,7 @@ chmod +x uninstall.sh && ./uninstall.sh
 - Sets background opacity to `0.85` with dynamic opacity enabled.
 - Window padding set to `30`.
 - Font family `Hack Nerd Font` with `font_size 8.0`.
-- Custom neon cursor trail enabled with `custom_shaders x-trail` (requires `cursor_trail 12` and `slangc`).
+- Custom lightning cursor trail enabled with `custom_shaders x-trail` (requires `cursor_trail 12` and `slangc`).
 - Window size and maximize state are not remembered between launches (`remember_window_size no`, `remember_window_position no`), using `1100x650` as initial size.
 - Mouse and clipboard:
   - `copy_on_select yes`
@@ -85,7 +85,7 @@ chmod +x uninstall.sh && ./uninstall.sh
 
 ## Notes
 - Kitty looks up included files relative to the `kitty.conf` location; themes are expected in `~/.config/kitty/themes`.
-- Custom shaders are looked up in `~/.config/kitty/shaders`; edit `x-trail.pipeline` to tune the trail intensity, color and sparks, then reload Kitty. A `slangc` in `PATH` is required (`SLANGC=/path/to/slangc` also works).
+- Custom shaders are looked up in `~/.config/kitty/shaders`; edit `x-trail.pipeline` to tune the bolt duration, width, intensity, sparks and colors, then reload Kitty. `MIN_MOVE_PX` controls how much movement is needed for a bolt (raise it to make typing subtler); `MAX_BOLT_LENGTH` caps long jumps. A `slangc` in `PATH` is required (`SLANGC=/path/to/slangc` also works).
 - To change font family, run `kitty +list-fonts` and update `font_family` accordingly.
 - If theme changes do not apply, ensure the `include themes/<name>.conf` line is present and reload the config.
 
@@ -98,4 +98,4 @@ chmod +x uninstall.sh && ./uninstall.sh
   - Ensure the theme file exists in `~/.config/kitty/themes` and the `include` line references it; reload Kitty or open a new window.
 - Custom trail not visible:
   - Install `shader-slang` so `slangc` is in `PATH` (Arch: `sudo pacman -S shader-slang`), then reload Kitty (`Ctrl+Shift+F5`). Without the compiler kitty silently disables custom shaders.
-  - Ensure `cursor_trail 12`, `custom_shaders x-trail` and `~/.config/kitty/shaders/x-trail.pipeline` are present.
+  - Ensure `cursor_trail 12`, `custom_shaders x-trail`, `~/.config/kitty/shaders/x-trail.pipeline` and `~/.config/kitty/shaders/x-lightning.slang` are present.
