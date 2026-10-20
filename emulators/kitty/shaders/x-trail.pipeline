@@ -3,10 +3,10 @@
 
 startgroup
     animation_start cursor-trail-move
-    animation_stop cursor-trail-stop
-    animation_step 33
+    animation_stop 720
+    animation_step 8
 
-    var float BOLT_DURATION 0.16
+    var float BOLT_DURATION 0.32
     var float BOLT_CORE_WIDTH 1.0
     var float BOLT_GLOW_WIDTH 5.0
     var float BOLT_JAGGEDNESS 0.11
@@ -20,12 +20,12 @@ startgroup
 
     var float SPARK_OPACITY 0.55
     var int MAX_SPARKS 18
-    var float SPARK_LIFETIME 0.18
-    var float SPARK_EMIT 0.06
-    var float SPARK_SPEED 18.0
+    var float SPARK_LIFETIME 0.36
+    var float SPARK_EMIT 0.12
+    var float SPARK_SPEED 5.0
     var float SPARK_SPREAD 1.0
     var float SPARK_SIZE 0.09
-    var float SPARK_DRAG 2.2
+    var float SPARK_DRAG 1.1
 
     var float3 BOLT_CORE_COLOR float3(0.75, 0.92, 1.0)
     var float3 BOLT_GLOW_COLOR float3(0.25, 0.50, 1.0)

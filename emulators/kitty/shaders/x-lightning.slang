@@ -6,7 +6,7 @@
 import kitty_custom_shader_types;
 
 // ---- Tuning (override with var in x-trail.pipeline) ----
-static const float BOLT_DURATION = 0.16;
+static const float BOLT_DURATION = 0.32;
 static const float BOLT_CORE_WIDTH = 1.0;
 static const float BOLT_GLOW_WIDTH = 5.0;
 static const float BOLT_JAGGEDNESS = 0.11;
@@ -23,12 +23,12 @@ static const float MAX_BOLT_LENGTH = 280.0;
 
 static const float SPARK_OPACITY = 0.55;
 static const int MAX_SPARKS = 18;
-static const float SPARK_LIFETIME = 0.18;
-static const float SPARK_EMIT = 0.06;
-static const float SPARK_SPEED = 18.0;
+static const float SPARK_LIFETIME = 0.36;
+static const float SPARK_EMIT = 0.12;
+static const float SPARK_SPEED = 5.0;
 static const float SPARK_SPREAD = 1.0;
 static const float SPARK_SIZE = 0.09;
-static const float SPARK_DRAG = 2.2;
+static const float SPARK_DRAG = 1.1;
 
 static const float3 BOLT_CORE_COLOR = float3(0.75, 0.92, 1.0);
 static const float3 BOLT_GLOW_COLOR = float3(0.25, 0.50, 1.0);
@@ -179,12 +179,12 @@ fragment_main(float4 color, KittyTextures t, KittyCustomShaderData d) {
 
     float flash = max(0.0, 1.0 - age / BOLT_DURATION);
     flash *= flash;
-    flash *= 1.0 - FLICKER + FLICKER * sin(age * 90.0 + seed);
+    flash *= 1.0 - FLICKER + FLICKER * sin(age * 45.0 + seed);
     // Short moves (typing) keep a small, dimmer pulse; long jumps get the full bolt.
     flash *= 0.45 + 0.55 * smoothstep(4.0, 48.0, bolt_len);
 
     // Keep the afterglow attached to the bolt instead of tinting the whole terminal.
-    float after = exp(-age * 9.0) * AFTERGLOW * 0.35 *
+    float after = exp(-age * 4.5) * AFTERGLOW * 0.35 *
         exp(-d_main * d_main / (BOLT_GLOW_WIDTH * BOLT_GLOW_WIDTH * 4.0));
 
     float core_amt = max(max(core, side_core * 0.50), fork_core * 0.70);
