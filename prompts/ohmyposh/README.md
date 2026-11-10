@@ -1,6 +1,6 @@
 <h1 align="center">Oh My Posh</h1>
 
-<p>Oh My Posh themes generated from the <a href="../colors.md">X colour palettes</a> following the same canonical colour mapping as the Starship themes.</p>
+<p>Oh My Posh themes generated from the <a href="../../colors.md">X colour palettes</a> following the same canonical colour mapping as the Starship themes.</p>
 
 <h2>Quick Start</h2>
 

@@ -3,7 +3,7 @@
 This folder provides ready-to-import PuTTY color themes as .reg files. Each file creates a PuTTY “Session” preconfigured with the theme’s colors.
 
 ## Files
-- Location: `putty/themes`
+- Location: `emulators/putty/themes`
 - Includes: x, madrid, lahabana, miami, paris, tokio, oslo, helsinki, berlin, london, praha, bogota
 
 ## Install

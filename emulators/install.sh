@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 echo "=============================================="
 echo " Terminal Xscriptor - Universal Theme Installer "
@@ -28,62 +28,77 @@ read -p "Enter your choice (1-15): " choice
 
 url_base="https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators"
 
+fetch() {
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL "$1"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -qO- "$1"
+    else
+        echo "Error: curl or wget is required." >&2
+        exit 1
+    fi
+}
+
+install_remote() {
+    fetch "$url_base/$1/install.sh" | bash
+}
+
 case $choice in
     1)
         echo "Installing Alacritty themes..."
-        wget -qO- "$url_base/alacritty/install.sh" | bash
+        install_remote alacritty
         ;;
     2)
         echo "Installing Foot themes..."
-        wget -qO- "$url_base/foot/install.sh" | bash
+        install_remote foot
         ;;
     3)
         echo "Installing Ghostty themes..."
-        wget -qO- "$url_base/ghostty/install.sh" | bash
+        install_remote ghostty
         ;;
     4)
         echo "Installing GNOME Terminal themes..."
-        wget -qO- "$url_base/gnome-terminal/install.sh" | bash
+        install_remote gnome-terminal
         ;;
     5)
         echo "Installing Hyper themes..."
-        wget -qO- "$url_base/hyper/install.sh" | bash
+        install_remote hyper
         ;;
     6)
         echo "Installing iTerm2 themes..."
-        wget -qO- "$url_base/iterm/install.sh" | bash
+        install_remote iterm
         ;;
     7)
         echo "Installing Kitty themes..."
-        wget -qO- "$url_base/kitty/install.sh" | bash
+        install_remote kitty
         ;;
     8)
         echo "Installing Konsole themes..."
-        wget -qO- "$url_base/konsole/install.sh" | bash
+        install_remote konsole
         ;;
     9)
         echo "Installing Ptyxis themes..."
-        wget -qO- "$url_base/ptyxis/install.sh" | bash
+        install_remote ptyxis
         ;;
     10)
         echo "Installing Terminator themes..."
-        wget -qO- "$url_base/terminator/install.sh" | bash
+        install_remote terminator
         ;;
     11)
         echo "Installing Termux themes..."
-        wget -qO- "$url_base/termux/install.sh" | bash
+        install_remote termux
         ;;
     12)
         echo "Installing Warp themes..."
-        wget -qO- "$url_base/warp/install.sh" | bash
+        install_remote warp
         ;;
     13)
         echo "Installing WezTerm themes..."
-        wget -qO- "$url_base/wezterm/install.sh" | bash
+        install_remote wezterm
         ;;
     14)
         echo "Installing XFCE Terminal themes..."
-        wget -qO- "$url_base/xfce/install.sh" | bash
+        install_remote xfce
         ;;
     15)
         echo "Exiting..."

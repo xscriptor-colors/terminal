@@ -1,6 +1,6 @@
 <h1 align="center">Starship</h2>
 
-<p>Starship themes generated from the <a href="../colors.md">X colour palettes</a> following the <a href="../README.md#canonical-colour-mapping">canonical colour mapping</a>. Pick a theme and point <code>STARSHIP_CONFIG</code> to it.</p>
+<p>Starship themes generated from the <a href="../../colors.md">X colour palettes</a> following the <a href="../README.md#canonical-colour-mapping">canonical colour mapping</a>. Pick a theme and point <code>STARSHIP_CONFIG</code> to it.</p>
 
 <h2>Quick Start</h2>
 

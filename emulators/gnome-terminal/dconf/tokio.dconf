@@ -2,7 +2,7 @@
 visible-name='tokio'
 use-theme-colors=false
 foreground-color='#f7f1ff'
-background-color='#191919'
+background-color='#1c1c1d'
 bold-is-bright=true
 bold-color-same-as-fg=true
-palette=['#363537', '#fc618d', '#7bd88f', '#fce566', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff', '#69676c', '#fc618d', '#7bd88f', '#fce566', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff']
+palette=['#1c1c1d', '#fc618d', '#7bd88f', '#fce566', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff', '#1c1c1d', '#fc618d', '#7bd88f', '#fce566', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff']

@@ -1,6 +1,6 @@
 <h1 align="center">Bash / Zsh PS1</h2>
 
-<p>Minimal PS1 themes generated from the <a href="../colors.md">X colour palettes</a>. No prompt framework required — just a coloured prompt with user, host, directory, git branch, and exit code.</p>
+<p>Minimal PS1 themes generated from the <a href="../../colors.md">X colour palettes</a>. No prompt framework required — just a coloured prompt with user, host, directory, git branch, and exit code.</p>
 
 <h2>Quick Start</h2>
 

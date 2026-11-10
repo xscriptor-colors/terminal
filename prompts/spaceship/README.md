@@ -1,6 +1,6 @@
 <h1 align="center">Spaceship</h2>
 
-<p>Spaceship prompt themes generated from the <a href="../colors.md">X colour palettes</a>. Source the theme file before initialising Spaceship in your shell config.</p>
+<p>Spaceship prompt themes generated from the <a href="../../colors.md">X colour palettes</a>. Source the theme file before initialising Spaceship in your shell config.</p>
 
 <h2>Quick Start</h2>
 

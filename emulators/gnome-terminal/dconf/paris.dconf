@@ -2,7 +2,7 @@
 visible-name='paris'
 use-theme-colors=false
 foreground-color='#f7f1ff'
-background-color='#11091c'
+background-color='#1a0a30'
 bold-is-bright=true
 bold-color-same-as-fg=true
-palette=['#222222', '#fc618d', '#7bd88f', '#fce566', '#a3f3ff', '#c4bdff', '#a3f3ff', '#f7f1ff', '#525053', '#fc618d', '#7bd88f', '#fce566', '#a3f3ff', '#c4bdff', '#a3f3ff', '#f7f1ff']
+palette=['#1a0a30', '#fc618d', '#7bd88f', '#fce566', '#a3f3ff', '#c4bdff', '#a3f3ff', '#1a0a30', '#c4bdff', '#fc618d', '#7bd88f', '#fce566', '#a3f3ff', '#c4bdff', '#a3f3ff', '#f7f1ff']

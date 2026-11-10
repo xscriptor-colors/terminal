@@ -6,9 +6,9 @@
 - Run:
   ```powershell
   Set-ExecutionPolicy Bypass -Scope Process -Force
-  .\powershell\install.ps1
+  .\emulators\powershell\install.ps1
   ```
-- This imports all themes from [themes](https://github.com/xscriptor-colors/terminal/tree/main/powershell/themes) into Windows Terminal and sets “x” for PowerShell profiles
+- This imports all themes from [themes](https://github.com/xscriptor-colors/terminal/tree/main/emulators/powershell/themes) into Windows Terminal and sets “x” for PowerShell profiles
 - Restart Windows Terminal (or PowerShell if launched inside it)
 
 ## Remote Install
@@ -85,7 +85,7 @@
 - Pass the exact scheme name:
   ```powershell
   Set-ExecutionPolicy Bypass -Scope Process -Force
-  .\powershell\install.ps1 -SetSchemeName "oslo"
+  .\emulators\powershell\install.ps1 -SetSchemeName "oslo"
   ```
 - Available names include:
   - x, madrid
@@ -100,7 +100,7 @@
 - Open Windows Terminal settings.json:
   - Store path: `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
   - WinGet path: `%LOCALAPPDATA%\Microsoft\Windows Terminal\settings.json`
-- Copy the “schemes” object from any file in [themes](https://github.com/xscriptor-colors/terminal/tree/main/powershell/themes) into the top-level `"schemes": []` array of your settings.json
+- Copy the “schemes” object from any file in [themes](https://github.com/xscriptor-colors/terminal/tree/main/emulators/powershell/themes) into the top-level `"schemes": []` array of your settings.json
 - In your PowerShell profile, set:
   ```json
   "colorScheme": "x"
@@ -114,21 +114,21 @@
 ## Themes
 
 - Dark:
-  - [x.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/x.json)
-  - [lahabana.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/lahabana.json)
-  - [miami.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/miami.json)
-  - [paris.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/paris.json)
-  - [tokio.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/tokio.json)
-  - [praha.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/praha.json)
-  - [bogota.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/bogota.json)
+  - [x.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/x.json)
+  - [lahabana.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/lahabana.json)
+  - [miami.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/miami.json)
+  - [paris.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/paris.json)
+  - [tokio.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/tokio.json)
+  - [praha.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/praha.json)
+  - [bogota.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/bogota.json)
 - Light:
-  - [madrid.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/madrid.json)
+  - [madrid.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/madrid.json)
 - Nord:
-  - [oslo.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/oslo.json)
-  - [helsinki.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/helsinki.json)
+  - [oslo.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/oslo.json)
+  - [helsinki.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/helsinki.json)
 - Greyscale:
-  - [berlin.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/berlin.json)
-  - [london.json](https://github.com/xscriptor-colors/terminal/blob/main/powershell/themes/london.json)
+  - [berlin.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/berlin.json)
+  - [london.json](https://github.com/xscriptor-colors/terminal/blob/main/emulators/powershell/themes/london.json)
 
 ## Notes
 

@@ -5,4 +5,4 @@ foreground-color='#ffffff'
 background-color='#1a1a1a'
 bold-is-bright=true
 bold-color-same-as-fg=true
-palette=['#1a1a1a', '#ff5555', '#b8e6a0', '#ffe4a3', '#bd93f9', '#ff9aa2', '#8be9fd', '#ffffff', '#6272a4', '#ff6e6e', '#b8e6a0', '#ffe4a3', '#d6acff', '#ff9aa2', '#a4ffff', '#ffffff']
+palette=['#1A1A1A', '#FF5555', '#B8E6A0', '#FFE4A3', '#BD93F9', '#FF9AA2', '#8BE9FD', '#FFFFFF', '#6272A4', '#FF6E6E', '#B8E6A0', '#FFE4A3', '#D6ACFF', '#FF9AA2', '#A4FFFF', '#FFFFFF']
