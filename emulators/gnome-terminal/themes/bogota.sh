@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-PROFILE_ID="$(dconf read /org/gnome/terminal/legacy/profiles:/default | tr -d \"'\")"
+PROFILE_ID="$(dconf read /org/gnome/terminal/legacy/profiles:/default | tr -d "'")"
 dconf write /org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/use-theme-colors "false"
 dconf write /org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/background-color "'#200b0a'"
 dconf write /org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/foreground-color "'#f7f1ff'"

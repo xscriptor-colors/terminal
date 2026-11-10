@@ -94,7 +94,9 @@ My own collection of terminal themes and color schemes designed for a consistent
 
 <p>You can use the universal installer to automatically configure the theme for your preferred terminal emulator. Just run the following command and select your terminal from the menu:</p>
 
-<pre><code>wget -qO- https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/install.sh | bash</code></pre>
+<pre><code>wget -qO- https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/install.sh | bash
+# or, on systems with curl:
+curl -fsSL https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/install.sh | bash</code></pre>
 
 <p>Supported terminals include Alacritty, Black Box, Contour, Foot, Ghostty, GNOME Terminal, Guake, Hyper, iTerm2, Kitty, Konsole, Mintty, MobaXterm, PowerShell, Ptyxis, PuTTY, Rio, Tabby, Terminal.app, Terminator, Termux, Tilix, Warp, Wave, WezTerm, and XFCE Terminal.</p>
 <p>For quick install commands and per-terminal setup details, see the <a href="./emulators/README.md">Emulators README</a>.</p>
@@ -166,7 +168,7 @@ My own collection of terminal themes and color schemes designed for a consistent
 
 <a href="https://xscriptor.io">Dev</a>
  & 
-<a href="https://github.com/xscriptor">github</a>
+<a href="https://github.com/xscriptor">Github</a>
  & 
 <a href="https://www.xscriptor.com">X</a>
 

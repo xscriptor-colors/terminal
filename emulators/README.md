@@ -4,7 +4,9 @@
 
 <h2 align="center">Universal Installer</h2>
 
-<pre><code>wget -qO- https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/install.sh | bash</code></pre>
+<pre><code>wget -qO- https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/install.sh | bash
+# or, on systems with curl:
+curl -fsSL https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emulators/install.sh | bash</code></pre>
 
 <p>Windows-only terminals (PowerShell, MobaXterm, PuTTY) use their own install or import steps. See each terminal README for details.</p>
 

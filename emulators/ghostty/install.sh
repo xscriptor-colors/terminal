@@ -266,13 +266,21 @@ if [ "$(uname -s)" = "Darwin" ]; then
   echo "Configuration file written (macOS App Support): $MAC_CONF"
 fi
 
-sed -i -E 's#^theme[[:space:]]*=.*#theme = x.ini#' "$MAIN" || true
+sed_in_place() {
+  if sed --version >/dev/null 2>&1; then
+    sed -i "$@"
+  else
+    sed -i '' "$@"
+  fi
+}
+
+sed_in_place -E 's#^theme[[:space:]]*=.*#theme = x.ini#' "$MAIN" || true
 grep -q '^theme[[:space:]]*=' "$MAIN" || {
   echo "theme = x.ini" >> "$MAIN"
 }
 echo "Default theme set: x.ini"
 if grep -qE '^gtk-custom-css[[:space:]]*=' "$MAIN"; then
-  sed -i -E 's#^gtk-custom-css[[:space:]]*=.*#gtk-custom-css = ~/.config/ghostty/styles/x.css#' "$MAIN"
+  sed_in_place -E 's#^gtk-custom-css[[:space:]]*=.*#gtk-custom-css = ~/.config/ghostty/styles/x.css#' "$MAIN"
 else
   echo "gtk-custom-css = ~/.config/ghostty/styles/x.css" >> "$MAIN"
 fi
@@ -281,16 +289,24 @@ echo "Default GTK CSS set: ~/.config/ghostty/styles/x.css"
 append_aliases() {
   RC="$1"
   [ -f "$RC" ] || touch "$RC"
-  sed -i '/^ghx() {/,/^}/d' "$RC" || true
-  sed -i -E '/^alias ghx[a-zA-Z0-9]+=/d' "$RC" || true
+  sed_in_place '/^ghx() {/,/^}/d' "$RC" || true
+  sed_in_place -E '/^alias ghx[a-zA-Z0-9]+=/d' "$RC" || true
   {
     echo 'ghx() {'
     echo '  name="$1"'
     echo '  file="$HOME/.config/ghostty/config"'
-    echo '  sed -i -E "s#^theme[[:space:]]*=.*#theme = ${name}.ini#" "$file"'
+    echo '  if sed --version >/dev/null 2>&1; then'
+    echo '    sed -i -E "s#^theme[[:space:]]*=.*#theme = ${name}.ini#" "$file"'
+    echo '  else'
+    echo '    sed -i "" -E "s#^theme[[:space:]]*=.*#theme = ${name}.ini#" "$file"'
+    echo '  fi'
     echo '  grep -q "^theme[[:space:]]*=" "$file" || echo "theme = ${name}.ini" >> "$file"'
     echo '  if grep -qE "^gtk-custom-css[[:space:]]*=" "$file"; then'
-    echo '    sed -i -E "s#^gtk-custom-css[[:space:]]*=.*#gtk-custom-css = ~/.config/ghostty/styles/${name}.css#" "$file"'
+    echo '    if sed --version >/dev/null 2>&1; then'
+    echo '      sed -i -E "s#^gtk-custom-css[[:space:]]*=.*#gtk-custom-css = ~/.config/ghostty/styles/${name}.css#" "$file"'
+    echo '    else'
+    echo '      sed -i "" -E "s#^gtk-custom-css[[:space:]]*=.*#gtk-custom-css = ~/.config/ghostty/styles/${name}.css#" "$file"'
+    echo '    fi'
     echo '  else'
     echo '    echo "gtk-custom-css = ~/.config/ghostty/styles/${name}.css" >> "$file"'
     echo '  fi'

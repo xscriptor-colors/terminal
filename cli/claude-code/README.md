@@ -121,7 +121,7 @@ bash scripts/install.sh</code></pre>
 
 <a href="https://xscriptor.io">Dev</a>
  &amp;
-<a href="https://github.com/xscriptor">github</a>
+<a href="https://github.com/xscriptor">Github</a>
  &amp;
 <a href="https://www.xscriptor.com">X</a>
 

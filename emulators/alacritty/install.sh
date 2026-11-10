@@ -255,18 +255,31 @@ else
 fi
 echo "Configuration file written: $MAIN"
 
-sed -i -E 's#^import = \[.*\]#import = ["themes/x.toml"]#' "$MAIN" || true
+sed_in_place() {
+  if sed --version >/dev/null 2>&1; then
+    sed -i "$@"
+  else
+    sed -i '' "$@"
+  fi
+}
+
+sed_in_place -E 's#^import = \[.*\]#import = ["themes/x.toml"]#' "$MAIN" || true
 echo "Default theme set: themes/x.toml"
 
 append_aliases() {
   RC="$1"
   [ -f "$RC" ] || touch "$RC"
-  sed -i '/^alax() {/,/^}/d' "$RC" || true
-  sed -i -E '/^alias alax[a-zA-Z0-9]+=/d' "$RC" || true
+  sed_in_place '/^alax() {/,/^}/d' "$RC" || true
+  sed_in_place -E '/^alias alax[a-zA-Z0-9]+=/d' "$RC" || true
   {
     echo 'alax() {'
     echo '  name="$1"'
-    echo '  sed -i -E "s#^import = \\[.*\\]#import = [\\\"themes/${name}.toml\\\"]#" "$HOME/.config/alacritty/alacritty.toml"'
+    echo '  file="$HOME/.config/alacritty/alacritty.toml"'
+    echo '  if sed --version >/dev/null 2>&1; then'
+    echo '    sed -i -E "s#^import = \\[.*\\]#import = [\\\"themes/${name}.toml\\\"]#" "$file"'
+    echo '  else'
+    echo '    sed -i "" -E "s#^import = \\[.*\\]#import = [\\\"themes/${name}.toml\\\"]#" "$file"'
+    echo '  fi'
     echo '}'
     echo 'alias alaxx="alax x"'
     echo 'alias alaxmadrid="alax madrid"'

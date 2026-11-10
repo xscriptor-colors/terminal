@@ -1,0 +1,42 @@
+name: Validate themes
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validation tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install PyYAML==6.0.2
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Check generated themes are in sync
+        run: python3 emulators/builder/build.py --check
+
+      - name: Validate assets and documentation
+        run: python3 scripts/validate.py
+
+      - name: Lint shell scripts
+        run: git ls-files -z '*.sh' | xargs -0 shellcheck -S error

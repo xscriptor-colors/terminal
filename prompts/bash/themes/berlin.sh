@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # berlin — Bash/Zsh PS1 theme
 # Generated from colors.md — canonical mapping
 # Source this file in your shell rc to apply.

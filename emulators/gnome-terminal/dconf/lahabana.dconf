@@ -2,7 +2,7 @@
 visible-name='lahabana'
 use-theme-colors=false
 foreground-color='#f7f1ff'
-background-color='#191919'
+background-color='#19191a'
 bold-is-bright=true
 bold-color-same-as-fg=true
-palette=['#363537', '#fc618d', '#7bd88f', '#e5ff9d', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff', '#69676c', '#fc618d', '#7bd88f', '#e5ff9d', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff']
+palette=['#19191a', '#fc618d', '#7bd88f', '#e5ff9d', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff', '#19191a', '#fc618d', '#7bd88f', '#e5ff9d', '#fd9353', '#948ae3', '#5ad4e6', '#f7f1ff']
