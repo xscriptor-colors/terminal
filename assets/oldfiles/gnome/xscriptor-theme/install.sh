@@ -14,6 +14,7 @@ if ! command -v dconf &> /dev/null; then
     echo "   Ubuntu/Debian: sudo apt install dconf-cli"
     echo "   Fedora: sudo dnf install dconf"
     echo "   Arch: sudo pacman -S dconf"
+    echo "   X Linux: sudo xpm -S dconf"
     exit 1
 fi
 
@@ -30,10 +31,15 @@ USE_TRANSPARENCY=false
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     USE_TRANSPARENCY=true
 
-    # On Arch-based systems, check/install gnome-terminal-transparency
-    if command -v pacman &> /dev/null; then
-        echo "Arch-based system detected."
-        if ! pacman -Qi gnome-terminal-transparency &> /dev/null; then
+    # On Arch-based/X Linux systems, check/install gnome-terminal-transparency
+    if command -v xpm &> /dev/null; then
+        PM=xpm
+    elif command -v pacman &> /dev/null; then
+        PM=pacman
+    fi
+    if [ -n "${PM:-}" ]; then
+        echo "Arch-based system detected (using $PM)."
+        if ! $PM -Qi gnome-terminal-transparency &> /dev/null; then
             echo "Package gnome-terminal-transparency is not installed."
             read -p "Do you want to install gnome-terminal-transparency from AUR? (y/N): " -n 1 -r
             echo
@@ -42,7 +48,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
                     yay -S --noconfirm gnome-terminal-transparency
                 else
                     echo "Error: yay is not installed. Please install it first with:"
-                    echo "   sudo pacman -S --needed base-devel git"
+                    echo "   sudo $PM -S --needed base-devel git"
                     echo "   git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
                     exit 1
                 fi

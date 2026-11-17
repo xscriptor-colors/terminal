@@ -11,7 +11,7 @@ RAW_BASE="https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emula
 THEMES_FILES="x.palette madrid.palette lahabana.palette miami.palette paris.palette tokio.palette oslo.palette helsinki.palette berlin.palette london.palette praha.palette bogota.palette"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -52,8 +52,8 @@ install_pkgs() {
     dnf)
       $SUDO dnf install -y "$@"
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm "$@"
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm "$@"
       ;;
     zypper)
       $SUDO zypper refresh

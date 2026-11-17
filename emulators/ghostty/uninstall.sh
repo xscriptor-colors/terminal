@@ -12,7 +12,7 @@ THEMES_FILES="x.ini madrid.ini lahabana.ini miami.ini paris.ini tokio.ini oslo.i
 STYLES_FILES="x.css madrid.css lahabana.css miami.css paris.css tokio.css oslo.css helsinki.css berlin.css london.css praha.css bogota.css"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -110,8 +110,8 @@ if [ "$REPLY_GHOSTTY" = "y" ] || [ "$REPLY_GHOSTTY" = "Y" ]; then
       dnf)
         $SUDO dnf remove -y ghostty || true
         ;;
-      pacman)
-        $SUDO pacman -Rns --noconfirm ghostty || true
+      xpm|pacman)
+        $SUDO "$PM" -Rns --noconfirm ghostty || true
         ;;
       zypper)
         $SUDO zypper remove -y ghostty || true

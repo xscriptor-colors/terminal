@@ -5,7 +5,7 @@ TARGET_DIR="$HOME/.local/share/xfce4/terminal/colorschemes"
 THEMES_FILES="x.theme madrid.theme lahabana.theme miami.theme paris.theme tokio.theme oslo.theme helsinki.theme berlin.theme london.theme praha.theme bogota.theme"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -76,8 +76,8 @@ case "$REPLY_XFCE" in
         dnf)
           $SUDO dnf remove -y xfce4-terminal || true
           ;;
-        pacman)
-          $SUDO pacman -Rns --noconfirm xfce4-terminal || true
+        xpm|pacman)
+          $SUDO "$PM" -Rns --noconfirm xfce4-terminal || true
           ;;
         zypper)
           $SUDO zypper remove -y xfce4-terminal || true

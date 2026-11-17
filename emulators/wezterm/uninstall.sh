@@ -6,7 +6,7 @@ TARGET_THEMES_DIR="$TARGET_CONFIG_DIR/colors"
 THEMES_FILES="x.toml madrid.toml lahabana.toml miami.toml paris.toml tokio.toml oslo.toml helsinki.toml berlin.toml london.toml praha.toml bogota.toml"
 
 detect_pm() {
-  for pm in brew apt-get dnf pacman zypper yum apk flatpak nix-env; do
+  for pm in brew apt-get dnf xpm pacman zypper yum apk flatpak nix-env; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -93,8 +93,8 @@ case "$REPLY_WEZTERM" in
         dnf)
           $SUDO dnf remove -y wezterm || true
           ;;
-        pacman)
-          $SUDO pacman -Rns --noconfirm wezterm || true
+        xpm|pacman)
+          $SUDO "$PM" -Rns --noconfirm wezterm || true
           ;;
         zypper)
           $SUDO zypper remove -y wezterm || true

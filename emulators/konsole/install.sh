@@ -6,7 +6,7 @@ SRC_THEMES_DIR="$SCRIPT_DIR/themes"
 TARGET_THEMES_DIR="$HOME/.local/share/konsole"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -42,8 +42,8 @@ install_pkgs() {
     dnf)
       $SUDO dnf install -y "$@"
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm "$@"
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm "$@"
       ;;
     zypper)
       $SUDO zypper refresh

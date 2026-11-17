@@ -8,7 +8,7 @@ MAIN="$TARGET_CONFIG_DIR/kitty.conf"
 THEMES_FILES="x.conf madrid.conf lahabana.conf miami.conf paris.conf tokio.conf oslo.conf helsinki.conf berlin.conf london.conf praha.conf bogota.conf"
 SHADERS_FILES="x-lightning.slang x-trail.pipeline x-glow.slang"
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1

@@ -7,7 +7,7 @@ TARGET_THEMES_DIR="$TARGET_CONFIG_DIR/themes"
 MAIN="$TARGET_CONFIG_DIR/foot.ini"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -74,8 +74,8 @@ install_pkgs() {
     dnf)
       $SUDO dnf install -y "$@"
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm "$@"
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm "$@"
       ;;
     zypper)
       $SUDO zypper refresh
@@ -110,8 +110,8 @@ ensure_unzip() {
     dnf)
       $SUDO dnf install -y unzip || true
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm unzip || true
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm unzip || true
       ;;
     zypper)
       $SUDO zypper refresh

@@ -8,7 +8,7 @@ TARGET_THEMES_DIR="$TARGET_CONFIG_DIR/themes"
 TARGET_SHADERS_DIR="$TARGET_CONFIG_DIR/shaders"
 MAIN="$TARGET_CONFIG_DIR/kitty.conf"
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -52,8 +52,8 @@ install_pkgs() {
     dnf)
       $SUDO dnf install -y "$@"
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm "$@"
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm "$@"
       ;;
     zypper)
       $SUDO zypper refresh
@@ -87,8 +87,8 @@ ensure_unzip() {
     dnf)
       $SUDO dnf install -y unzip || true
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm unzip || true
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm unzip || true
       ;;
     zypper)
       $SUDO zypper refresh
@@ -115,17 +115,18 @@ ensure_slangc() {
     echo "Custom kitty shaders stay disabled until shader-slang is installed."
     return 0
   }
-  if [ "$PM" = "pacman" ]; then
+  if [ "$PM" = "pacman" ] || [ "$PM" = "xpm" ]; then
     SUDO="$(sudo_cmd)"
     echo "Installing shader-slang (required by the custom kitty shaders)..."
-    $SUDO pacman -S --needed --noconfirm shader-slang || true
+    $SUDO "$PM" -S --needed --noconfirm shader-slang || true
     if command -v slangc >/dev/null 2>&1; then
       echo "shader-slang installed: $(command -v slangc)"
       return 0
     fi
   fi
   echo "Warning: slangc was not found. Custom kitty shaders stay disabled."
-  echo "  Arch:  sudo pacman -S shader-slang"
+  echo "  Arch:   sudo pacman -S shader-slang"
+  echo "  X Linux: sudo xpm -S shader-slang"
   echo "  Other: install shader-slang from your package manager or"
   echo "         https://github.com/shader-slang/slang/releases"
   echo "  If slangc is not in PATH, launch kitty with SLANGC=/path/to/slangc."

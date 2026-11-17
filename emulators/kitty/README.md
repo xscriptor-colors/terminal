@@ -22,7 +22,7 @@
 
 ## Requirements
 - Kitty installed.
-- Kitty 0.49.0 or newer and `shader-slang` (provides `slangc`) for the custom trail shader. On Arch: `sudo pacman -S shader-slang`; on other systems install it from your package manager or https://github.com/shader-slang/slang/releases. The installer tries to install it automatically with pacman.
+- Kitty 0.49.0 or newer and `shader-slang` (provides `slangc`) for the custom trail shader. On X Linux: `sudo xpm -S shader-slang`; on Arch: `sudo pacman -S shader-slang`; on other systems install it from your package manager or https://github.com/shader-slang/slang/releases. The installer tries to install it automatically with xpm/pacman.
 - `sed`, `bash` or `zsh`.
 - `fontconfig` (`fc-list`), `curl` or `wget`, `unzip`.
 - A Nerd Font installed, specifically `Hack Nerd Font` (installer tries to install it automatically).
@@ -39,7 +39,7 @@ or
   - `chmod +x install.sh && ./install.sh`
 - What the installer does:
   - Detects your package manager and installs any missing dependencies (`kitty`, `sed`, `fontconfig`, `curl/wget`, `unzip`).
-  - Installs `shader-slang` (custom shader compiler) automatically with pacman, or warns you how to install it on other systems.
+  - Installs `shader-slang` (custom shader compiler) automatically with xpm/pacman, or warns you how to install it on other systems.
   - Installs `Hack Nerd Font` automatically (Homebrew on macOS; download + extract on Linux).
   - Copies all themes to `~/.config/kitty/themes`.
   - Copies the custom shaders to `~/.config/kitty/shaders`.
@@ -97,5 +97,5 @@ chmod +x uninstall.sh && ./uninstall.sh
 - Theme change not visible:
   - Ensure the theme file exists in `~/.config/kitty/themes` and the `include` line references it; reload Kitty or open a new window.
 - Custom trail not visible:
-  - Install `shader-slang` so `slangc` is in `PATH` (Arch: `sudo pacman -S shader-slang`), then reload Kitty (`Ctrl+Shift+F5`). Without the compiler kitty silently disables custom shaders.
+  - Install `shader-slang` so `slangc` is in `PATH` (X Linux: `sudo xpm -S shader-slang`; Arch: `sudo pacman -S shader-slang`), then reload Kitty (`Ctrl+Shift+F5`). Without the compiler kitty silently disables custom shaders.
   - Ensure `cursor_trail 12`, `custom_shaders x-trail`, `~/.config/kitty/shaders/x-trail.pipeline` and `~/.config/kitty/shaders/x-lightning.slang` are present.
