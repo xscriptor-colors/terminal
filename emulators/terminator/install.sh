@@ -5,7 +5,7 @@ TARGET_CONFIG_DIR="$HOME/.config/terminator"
 MAIN="$TARGET_CONFIG_DIR/config"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -46,8 +46,8 @@ install_pkgs() {
     dnf)
       $SUDO dnf install -y "$@"
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm "$@"
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm "$@"
       ;;
     zypper)
       $SUDO zypper refresh

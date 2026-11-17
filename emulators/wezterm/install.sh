@@ -9,7 +9,7 @@ RAW_BASE="https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emula
 THEMES_FILES="x.toml madrid.toml lahabana.toml miami.toml paris.toml tokio.toml oslo.toml helsinki.toml berlin.toml london.toml praha.toml bogota.toml"
 
 detect_pm() {
-  for pm in brew apt-get dnf pacman zypper yum apk nix-env; do
+  for pm in brew apt-get dnf xpm pacman zypper yum apk nix-env; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -56,7 +56,7 @@ ensure_flatpak_wezterm() {
     case "$PM" in
       apt-get) $SUDO apt-get update && $SUDO apt-get install -y flatpak ;;
       dnf) $SUDO dnf install -y flatpak ;;
-      pacman) $SUDO pacman -S --needed --noconfirm flatpak ;;
+      xpm|pacman) $SUDO "$PM" -S --needed --noconfirm flatpak ;;
       zypper) $SUDO zypper refresh && $SUDO zypper install -y flatpak ;;
       yum) $SUDO yum install -y flatpak ;;
       apk) $SUDO apk update && $SUDO apk add flatpak || true ;;
@@ -91,8 +91,8 @@ ensure_wezterm_installed() {
     dnf)
       $SUDO dnf install -y wezterm || ensure_flatpak_wezterm || true
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm wezterm || ensure_flatpak_wezterm || true
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm wezterm || ensure_flatpak_wezterm || true
       ;;
     zypper)
       $SUDO zypper refresh

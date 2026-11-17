@@ -14,7 +14,7 @@ detect_target() {
 }
 
 detect_pm() {
-  for pm in brew apt-get dnf pacman zypper yum apk; do
+  for pm in brew apt-get dnf xpm pacman zypper yum apk; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -90,8 +90,8 @@ case "$REPLY_WARP" in
         dnf)
           $SUDO dnf remove -y warp-terminal || true
           ;;
-        pacman)
-          $SUDO pacman -Rns --noconfirm warp-terminal || true
+        xpm|pacman)
+          $SUDO "$PM" -Rns --noconfirm warp-terminal || true
           ;;
         zypper)
           $SUDO zypper remove -y warp-terminal || true

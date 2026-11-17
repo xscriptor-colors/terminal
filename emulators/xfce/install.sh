@@ -8,7 +8,7 @@ RAW_BASE="https://raw.githubusercontent.com/xscriptor-colors/terminal/main/emula
 THEMES_FILES="x.theme madrid.theme lahabana.theme miami.theme paris.theme tokio.theme oslo.theme helsinki.theme berlin.theme london.theme praha.theme bogota.theme"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -63,8 +63,8 @@ install_pkgs() {
     dnf)
       $SUDO dnf install -y xfce4-terminal curl || $SUDO dnf install -y wget || true
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm xfce4-terminal curl || $SUDO pacman -S --needed --noconfirm wget || true
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm xfce4-terminal curl || $SUDO "$PM" -S --needed --noconfirm wget || true
       ;;
     zypper)
       $SUDO zypper refresh

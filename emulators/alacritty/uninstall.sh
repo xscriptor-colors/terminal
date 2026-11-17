@@ -7,7 +7,7 @@ MAIN="$TARGET_CONFIG_DIR/alacritty.toml"
 THEMES_FILES="x.toml madrid.toml lahabana.toml miami.toml paris.toml tokio.toml oslo.toml helsinki.toml berlin.toml london.toml praha.toml bogota.toml"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -86,8 +86,8 @@ if [ "$REPLY_ALA" = "y" ] || [ "$REPLY_ALA" = "Y" ]; then
       dnf)
         $SUDO dnf remove -y alacritty || true
         ;;
-      pacman)
-        $SUDO pacman -Rns --noconfirm alacritty || true
+      xpm|pacman)
+        $SUDO "$PM" -Rns --noconfirm alacritty || true
         ;;
       zypper)
         $SUDO zypper remove -y alacritty || true

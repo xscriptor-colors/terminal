@@ -19,7 +19,7 @@ UUID_PRAHA="6e8b5e50-1c2a-4a22-9a10-00000000000c"
 UUID_BOGOTA="6e8b5e50-1c2a-4a22-9a10-00000000000d"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -62,8 +62,8 @@ install_pkgs() {
     dnf)
       $SUDO dnf install -y "$@"
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm "$@"
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm "$@"
       ;;
     zypper)
       $SUDO zypper refresh
@@ -110,8 +110,8 @@ ensure_gnome_terminal() {
     dnf)
       $SUDO dnf install -y gnome-terminal || true
       ;;
-    pacman)
-      $SUDO pacman -S --needed --noconfirm gnome-terminal || true
+    xpm|pacman)
+      $SUDO "$PM" -S --needed --noconfirm gnome-terminal || true
       ;;
     zypper)
       $SUDO zypper refresh

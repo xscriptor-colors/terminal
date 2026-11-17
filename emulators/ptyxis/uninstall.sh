@@ -5,7 +5,7 @@ DEST_DIR="$HOME/.local/share/org.gnome.Ptyxis/palettes"
 THEMES_FILES="x.palette madrid.palette lahabana.palette miami.palette paris.palette tokio.palette oslo.palette helsinki.palette berlin.palette london.palette praha.palette bogota.palette"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -91,8 +91,8 @@ case "$REPLY_PTYXIS" in
         dnf)
           $SUDO dnf remove -y ptyxis || true
           ;;
-        pacman)
-          $SUDO pacman -Rns --noconfirm ptyxis || true
+        xpm|pacman)
+          $SUDO "$PM" -Rns --noconfirm ptyxis || true
           ;;
         zypper)
           $SUDO zypper remove -y ptyxis || true

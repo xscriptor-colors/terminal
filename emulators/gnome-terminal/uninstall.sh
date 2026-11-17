@@ -15,7 +15,7 @@ UUID_PRAHA="6e8b5e50-1c2a-4a22-9a10-00000000000c"
 UUID_BOGOTA="6e8b5e50-1c2a-4a22-9a10-00000000000d"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -144,8 +144,8 @@ case "$REPLY_GNOME" in
         dnf)
           $SUDO dnf remove -y gnome-terminal || true
           ;;
-        pacman)
-          $SUDO pacman -Rns --noconfirm gnome-terminal || true
+        xpm|pacman)
+          $SUDO "$PM" -Rns --noconfirm gnome-terminal || true
           ;;
         zypper)
           $SUDO zypper remove -y gnome-terminal || true

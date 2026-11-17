@@ -15,6 +15,7 @@ if ! command -v kitty &> /dev/null; then
     echo "   Ubuntu/Debian: sudo apt install kitty"
     echo "   Fedora: sudo dnf install kitty"
     echo "   Arch: sudo pacman -S kitty"
+    echo "   X Linux: sudo xpm -S kitty"
     echo "   macOS: brew install kitty"
     echo "   Or visit: https://sw.kovidgoyal.net/kitty/binary/"
     exit 1

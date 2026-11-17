@@ -7,7 +7,7 @@ MAIN="$TARGET_CONFIG_DIR/foot.ini"
 THEMES_FILES="x.ini madrid.ini lahabana.ini miami.ini paris.ini tokio.ini oslo.ini helsinki.ini berlin.ini london.ini praha.ini bogota.ini"
 
 detect_pm() {
-  for pm in apt-get dnf pacman zypper yum apk brew; do
+  for pm in apt-get dnf xpm pacman zypper yum apk brew; do
     command -v "$pm" >/dev/null 2>&1 && { echo "$pm"; return 0; }
   done
   return 1
@@ -86,8 +86,8 @@ if [ "$REPLY_FOOT" = "y" ] || [ "$REPLY_FOOT" = "Y" ]; then
       dnf)
         $SUDO dnf remove -y foot || true
         ;;
-      pacman)
-        $SUDO pacman -Rns --noconfirm foot || true
+      xpm|pacman)
+        $SUDO "$PM" -Rns --noconfirm foot || true
         ;;
       zypper)
         $SUDO zypper remove -y foot || true
