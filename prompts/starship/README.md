@@ -14,7 +14,7 @@ eval "$(starship init zsh)"
 
 <h2>Remote Install</h2>
 
-<p>This script downloads the full <code>prompts/starship</code> folder (themes and <code>starship.toml</code>), writes the active theme to <code>~/.config/starship.toml</code> and appends one managed block to <code>~/.zshrc</code> or <code>~/.bashrc</code> with the <code>STARSHIP_CONFIG</code> export, helper functions, aliases and a guarded <code>starship init</code>.</p>
+<p>This script downloads the full <code>prompts/starship</code> folder (themes and <code>starship.toml</code>), writes the active theme to <code>~/.config/starship.toml</code> and appends one managed block to <code>~/.zshrc</code> or <code>~/.bashrc</code> with the <code>STARSHIP_CONFIG</code> export, helper functions, aliases and a guarded <code>starship init</code>. The init runs at the end of the file (after oh-my-zsh/plugins) so themes cannot overwrite <code>PROMPT</code>, and the zsh block removes the grml hook that overrides it: <code>add-zsh-hook -d precmd prompt_grml_precmd 2>/dev/null</code>.</p>
 
 <pre><code>curl -fsSL https://raw.githubusercontent.com/xscriptor-colors/terminal/main/prompts/starship/install.sh | bash</code></pre>
 
@@ -29,12 +29,17 @@ eval "$(starship init zsh)"
 <pre><code>install.sh --theme tokio     # theme to install (default: x)
 install.sh --sync            # run equisdots theme-sync (starship target) afterwards
 install.sh --print           # print the managed block (stow/chezmoi) without writing
-install.sh --no-init         # do not add `starship init` to the shell config
+install.sh --no-init         # do not add `starship init` or the grml hook cleanup
 install.sh --uninstall       # remove the managed block and generated files</code></pre>
 
 <p>The installer is non-destructive: it replaces only its managed block, preserves symlinked dotfiles (editing the real target), keeps a one-time <code>.xscriptor-starship.bak</code> backup, never overwrites a <code>~/.config/starship.toml</code> you own (one without the theme-sync marker) and removes old <code>xscriptor-starship-v2</code> blocks when upgrading. Re-running it is idempotent.</p>
 
 <p>The <code>starship</code> binary is not installed by this script. Install it from <a href="https://starship.rs/guide/">starship.rs</a>; the managed block skips <code>starship init</code> until the binary exists.</p>
+
+<p><strong>Prompt not rendering?</strong> This is usually an ordering problem, not a missing theme: <code>starship init zsh</code> sets <code>PROMPT</code> when it runs, so a theme or hook loaded afterwards can overwrite it. The managed block runs the init at the end and disables the grml hook. If you maintain <code>.zshrc</code> yourself, keep the init at the end and add the cleanup after your theme:</p>
+
+<pre><code>eval "$(starship init zsh)"
+add-zsh-hook -d precmd prompt_grml_precmd 2>/dev/null</code></pre>
 
 <p>After install, switch themes with:</p>
 
