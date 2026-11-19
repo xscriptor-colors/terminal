@@ -2,6 +2,22 @@
 
 All notable changes to Terminal Xscriptor will be documented in this file.
 
+## 2026-11-19
+
+### Added
+- Starship installer now writes the active theme to `~/.config/starship.toml` with the theme-sync marker, detects the equisdots theme root, and integrates with equisdots `theme-sync` (`--sync` to apply the current palette immediately)
+- Non-destructive managed block at the end of `.zshrc`/`.bashrc` with helper functions, aliases, the `STARSHIP_CONFIG` export and a guarded `starship init`
+- `--theme`, `--print` (dotfiles/stow/chezmoi), `--no-init` and `--sync` installer options
+- One-time `.xscriptor-starship.bak` backup of the shell config
+
+### Fixed
+- Installer no longer exits with status 1 or leaks temporary directories
+- Reinstalling is idempotent (no duplicated blocks or accumulated blank lines)
+- Symlinked dotfiles are preserved instead of being replaced by `sed -i`
+- Existing user-owned `~/.config/starship.toml` and custom `STARSHIP_CONFIG` lines are no longer overwritten
+- Migration from the old `xscriptor-starship-v2` blocks, with safe handling of orphaned markers
+- `ZDOTDIR` is honored for zsh
+
 ## 2026-10-18
 
 ### Changed
