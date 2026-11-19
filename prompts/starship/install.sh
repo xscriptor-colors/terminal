@@ -268,14 +268,6 @@ read_export_value() {
   printf '%s\n' "$val"
 }
 
-has_init_line() {
-  awk '
-    /^[[:space:]]*#/ { next }
-    /starship init (zsh|bash)/ { found = 1 }
-    END { exit(found ? 0 : 1) }
-  ' "$1" 2>/dev/null
-}
-
 backup_rc() {
   local real="$1" bak="$1.xscriptor-starship.bak"
   if [[ -f "$real" && ! -e "$bak" ]]; then
@@ -478,14 +470,21 @@ compute_rc_export() {
 }
 
 compute_init_line() {
-  local base="$1" shell_name line=""
+  local shell_name
   shell_name="$(rc_shell)"
-  if [[ "$NO_INIT" == 0 && ( "$shell_name" == "zsh" || "$shell_name" == "bash" ) ]]; then
-    if ! has_init_line "$base"; then
-      line="command -v starship >/dev/null 2>&1 && eval \"\$(starship init $shell_name)\""
-    fi
+  [[ "$NO_INIT" == 0 ]] || return 0
+  if [[ "$shell_name" == "zsh" ]]; then
+    printf '%s\n' \
+      'if command -v starship >/dev/null 2>&1; then' \
+      '  eval "$(starship init zsh)"' \
+      '  add-zsh-hook -d precmd prompt_grml_precmd 2>/dev/null' \
+      'fi'
+  elif [[ "$shell_name" == "bash" ]]; then
+    printf '%s\n' \
+      'if command -v starship >/dev/null 2>&1; then' \
+      '  eval "$(starship init bash)"' \
+      'fi'
   fi
-  printf '%s\n' "$line"
 }
 
 active_is_managed() {

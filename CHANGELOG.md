@@ -17,6 +17,7 @@ All notable changes to Terminal Xscriptor will be documented in this file.
 - Existing user-owned `~/.config/starship.toml` and custom `STARSHIP_CONFIG` lines are no longer overwritten
 - Migration from the old `xscriptor-starship-v2` blocks, with safe handling of orphaned markers
 - `ZDOTDIR` is honored for zsh
+- The zsh managed block now runs `starship init` at the end (after oh-my-zsh/plugins) and removes the `prompt_grml_precmd` hook (`add-zsh-hook -d precmd prompt_grml_precmd 2>/dev/null`), so themes and grml-zsh-config cannot override the Starship prompt
 
 ## 2026-10-18
 
